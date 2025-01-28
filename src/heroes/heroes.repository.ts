@@ -17,6 +17,8 @@ export class HeroesRepository {
   create(createHeroDto: CreateHeroDto): Promise<Hero> {
     const hero = { id: this.getNewId(), ...createHeroDto };
     this.data.push(hero);
+
+    // NOTE: optimization for this especific use-case (challenge) to avoid sorting on EVERY dataset read
     this.sortDatabase();
 
     return Promise.resolve(new Hero(hero));
@@ -30,6 +32,7 @@ export class HeroesRepository {
     const byHumilityDescending = (firstHero: HeroDto, secondHero: HeroDto) =>
       firstHero.humility - secondHero.humility;
 
+    // NOTE: this MUTATES the array (which is the whole purpose of "sortDatabase" method)
     this.data.sort(byHumilityDescending);
   }
 }
