@@ -3,7 +3,7 @@ import { HeroesService } from './heroes.service';
 import { Hero } from './heroes.model';
 import { CreateHeroDto } from './dtos/create-hero.dto';
 
-@Controller('superheros')
+@Controller('superheroes')
 export class HeroesController {
   constructor(private readonly service: HeroesService) {}
 
