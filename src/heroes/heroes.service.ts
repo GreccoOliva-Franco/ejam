@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { HerosRepository } from './heros.repository';
+import { HeroesRepository } from './heroes.repository';
 import { CreateHeroDto } from './dtos/create-hero.dto';
-import { Hero } from './heros.model';
+import { Hero } from './heroes.model';
 
 @Injectable()
-export class HerosService {
-  constructor(private readonly repository: HerosRepository) {}
+export class HeroesService {
+  constructor(private readonly repository: HeroesRepository) {}
 
   getList() {
     return this.repository.findAll();

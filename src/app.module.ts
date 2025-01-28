@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { HerosModule } from './heros/heros.module';
+import { HeroesModule } from './heroes/heroes.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), HerosModule],
+  imports: [ConfigModule.forRoot(), HeroesModule],
   controllers: [],
   providers: [],
 })

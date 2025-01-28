@@ -4,7 +4,7 @@ import {
   MIN_HUMILITY_RATING,
   MIN_NAME_LENGTH,
   MIN_SUPERPOWER_LENGTH,
-} from '../heros.constants';
+} from '../heroes.constants';
 
 export class HeroDto {
   @IsNumber()

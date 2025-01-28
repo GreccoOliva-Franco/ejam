@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { HeroDto } from './dtos/hero.dto';
-import { Hero } from './heros.model';
+import { Hero } from './heroes.model';
 import { CreateHeroDto } from './dtos/create-hero.dto';
 
 @Injectable()
-export class HerosRepository {
+export class HeroesRepository {
   private lastId: number = 0;
   private data: HeroDto[] = [];
 

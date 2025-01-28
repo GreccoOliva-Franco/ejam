@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { HerosService } from './heros.service';
-import { Hero } from './heros.model';
+import { HeroesService } from './heroes.service';
+import { Hero } from './heroes.model';
 import { CreateHeroDto } from './dtos/create-hero.dto';
 
 @Controller('superheros')
-export class HerosController {
-  constructor(private readonly service: HerosService) {}
+export class HeroesController {
+  constructor(private readonly service: HeroesService) {}
 
   @Get('')
   getList(): Promise<Hero[]> {
