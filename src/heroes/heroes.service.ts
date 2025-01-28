@@ -1,7 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { HeroesRepository } from './heroes.repository';
 import { CreateHeroDto } from './dtos/create-hero.dto';
 import { Hero } from './heroes.model';
+import { DatabaseValidationError } from './errors/database-validation.error';
 
 @Injectable()
 export class HeroesService {
@@ -12,6 +17,13 @@ export class HeroesService {
   }
 
   create(createHeroDto: CreateHeroDto): Promise<Hero> {
-    return this.repository.create(createHeroDto);
+    try {
+      return this.repository.create(createHeroDto);
+    } catch (error) {
+      if (error instanceof DatabaseValidationError) {
+        throw new ConflictException(error.errors);
+      }
+      throw new InternalServerErrorException();
+    }
   }
 }
