@@ -12,8 +12,8 @@ The requirements are detailed in the `requirements.pdf` file
 ```javascript
 {
   id: ['unique', 'autoincremental'],
-  name: ['string', 'unique', 'min:1-character'],
-  superpower: ['string', 'min:1-character'],
+  name: ['string', 'unique'],
+  superpower: ['string'],
   humility: ['number', 'min:0', 'max:10']
 }
 ```

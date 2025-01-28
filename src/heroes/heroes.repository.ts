@@ -71,19 +71,34 @@ export class HeroesRepository {
    * Before insert validations
    * @param createHeroDto
    */
-  private validate({ name, humility }: CreateHeroDto): string[] {
+  private validate({ name, superpower, humility }: CreateHeroDto): string[] {
     const errors: string[] = [];
 
+    // "name" validations
+    if (typeof name !== 'string') {
+      errors.push('Invalid data type - hero.name. Type "string" required');
+    }
     const isUniqueName =
       this.data.find((hero) => hero.name === name) === undefined;
     if (!isUniqueName) {
       errors.push('Duplicate key - hero.name');
     }
+
+    // "superpower" validations
+    if (typeof superpower !== 'string') {
+      errors.push(
+        'Invalid data type - hero.superpower. Type "string" required',
+      );
+    }
+
+    // "humility" validations
     const isValidHumility =
-      MIN_HUMILITY_RATING <= humility && humility <= MAX_HUMILITY_RATING;
+      typeof humility !== 'number' &&
+      MIN_HUMILITY_RATING <= humility &&
+      humility <= MAX_HUMILITY_RATING;
     if (!isValidHumility) {
       errors.push(
-        `Invalid value - hero.humility must be a value between ${MIN_HUMILITY_RATING} <= hero.humility <= ${MAX_HUMILITY_RATING}`,
+        `Invalid value - hero.humility must be a "number" between ${MIN_HUMILITY_RATING} <= hero.humility <= ${MAX_HUMILITY_RATING}`,
       );
     }
 
